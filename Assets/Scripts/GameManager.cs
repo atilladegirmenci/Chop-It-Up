@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         if (System.IO.File.Exists(inventoryFilePath) && System.IO.File.Exists(backpackFilePath) && System.IO.File.Exists(playerStatsFilePath) && System.IO.File.Exists(sceneFilePath))
         {
             LoadSceneData(sceneName);
-            PlayerMovement.instance.transform.position = new Vector3(UpgradeArea.instance.transform.position.x + 10, PlayerMovement.instance.transform.position.y, PlayerMovement.instance.transform.position.z);
+            PlayerMovement.instance.gameObject.transform.position = new Vector3(UpgradeArea.instance.transform.position.x + 1, PlayerMovement.instance.transform.position.y, UpgradeArea.instance.transform.position.z);
             Debug.Log("Save dosyaları bulundu, yükleme işlemi yapıldı.");
         }
         else

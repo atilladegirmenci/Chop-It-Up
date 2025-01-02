@@ -13,15 +13,16 @@ public class UpgradeData
     public int maxlevel;
     public int cost;
     public float costMultiplier;
-
+    public string upgradeDescription;
     
-    public UpgradeData(string name, int startLevel, int startCost, float multiplier, int maxlvl)
+    public UpgradeData(string name, int startLevel, int startCost, float multiplier, int maxlvl, string description)
     {
         upgradeName = name;
         level = startLevel;
         cost = startCost;
         costMultiplier = multiplier;
         maxlevel = maxlvl;
+        upgradeDescription = description;
     }
 
    

@@ -26,8 +26,8 @@ public class Checkpoint : MonoBehaviour
 
 
           
-            Instantiate(fences,fences.transform.position + newPos , Quaternion.identity);
-            Instantiate(roads,roads.transform.position+ newPos , Quaternion.identity);
+            Instantiate(fences,fences.transform.position + newPos* (TreeSpawner.Instance.spawnedGroupAmount-1) , Quaternion.identity);
+            Instantiate(roads,roads.transform.position+ newPos* (TreeSpawner.Instance.spawnedGroupAmount-1) , Quaternion.identity);
 
            
         }

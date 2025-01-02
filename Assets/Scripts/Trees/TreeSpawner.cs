@@ -13,7 +13,7 @@ public class TreeSpawner : MonoBehaviour
     public float spacingX;
     public float spacingZ;
     private Color gizmoColor = Color.blue;
-    private int spawnedGroupAmount;
+    public int spawnedGroupAmount;
     private Vector3[,] gridPositions;
     public Vector3 groupOffset = Vector3.zero;
 

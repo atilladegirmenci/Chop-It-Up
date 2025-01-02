@@ -6,7 +6,7 @@ public class PlayerChop : MonoBehaviour
 {
     [SerializeField] float maxDistance;
     int layerMask;
-    bool isChopping;
+    
     void Start()
     {
         layerMask = LayerMask.GetMask("Trees");
@@ -14,14 +14,14 @@ public class PlayerChop : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !isChopping)
+        if(Input.GetMouseButtonDown(0))
         {
            StartCoroutine( Chop());
         }
+      
     }
     private IEnumerator Chop()
     {
-        isChopping = true;
         RaycastHit[] trees = ChopArea();
         foreach (RaycastHit hit in trees)
         {
@@ -35,7 +35,6 @@ public class PlayerChop : MonoBehaviour
                 }
             }
         }
-        isChopping=false;
     }
     public RaycastHit[] ChopArea()
     {

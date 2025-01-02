@@ -11,7 +11,15 @@ public class UpgradeSystem : MonoBehaviour
     {
         instance = this;
     }
-   
+    private void Start()
+    {
+        if (axeList == null || axeList.Count == 0)
+        {
+            Debug.LogError("axeList is empty or not assigned!");
+            return;
+        }
+        ChangeAxe(PlayerStats.instance.GetUpgrade("chopStrength").level);
+    }
     public void UpgradeSpeed()
     {
         UpgradeData speedUpgrade = PlayerStats.instance.GetUpgrade("walkSpeed");
@@ -28,10 +36,10 @@ public class UpgradeSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("not enough materials");
+                UIScript.instance.ShowNotification("Not enough materials!");
             }
         }
-        else { Debug.Log("max level has reached"); }
+        else { UIScript.instance.ShowNotification("Max level has reached!"); }
     }
     public void UpgradeChopStrenght()
     {
@@ -54,10 +62,10 @@ public class UpgradeSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("not enough materials");
+                UIScript.instance.ShowNotification("Not enough materials!");
             }
         }
-        else { Debug.Log("max level has reached"); }
+        else { UIScript.instance.ShowNotification("Max level has reached!"); }
     }
     public void UpgradeChopAreaSize()
     {
@@ -71,15 +79,15 @@ public class UpgradeSystem : MonoBehaviour
                 areaUpgrade.IncreaseLevel();
                 areaUpgrade.IncreaseCost();
 
-                PlayerStats.instance.chopAreaSize = PlayerStats.instance.chopAreaSize + new Vector3(0.1f, 0, 0.1f);
+                PlayerStats.instance.chopAreaSize = PlayerStats.instance.chopAreaSize + new Vector3(0.1f, 0, 0.1f); 
 
             }
             else
             {
-                Debug.Log("not enough materials");
+                UIScript.instance.ShowNotification("Not enough materials!");
             }
         }
-        else { Debug.Log("max level has reached"); }
+        else { UIScript.instance.ShowNotification("Max level has reached!"); }
     }
     public void UpgradeTruckPos()
     {
@@ -93,14 +101,14 @@ public class UpgradeSystem : MonoBehaviour
                 posUpgrade.IncreaseLevel();
                 posUpgrade.IncreaseCost();
 
-                StartCoroutine(UpgradeArea.instance.movePos());
+                StartCoroutine(UpgradeArea.instance.movePos()); //truck moved
             }
             else
             {
-                Debug.Log("not enough materials");
+                UIScript.instance.ShowNotification("Not enough materials!");
             }
         }
-        else { Debug.Log("max level has reached"); }
+        else { UIScript.instance.ShowNotification("Max level has reached!"); }
     }
     public void UpgradeBackpackSize()
     {
@@ -118,15 +126,15 @@ public class UpgradeSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("not enough materials");
+                UIScript.instance.ShowNotification("Not enough materials!");
             }
         }
-        else { Debug.Log("max level has reached"); }
+        else { UIScript.instance.ShowNotification("Max level has reached!"); }
     }
 
-    private void ChangeAxe(int strengthLevel)
+    public void ChangeAxe(int strengthLevel)
     {
-        int newIndex = (strengthLevel -1) / 2; // update axe model every 2 level
+        int newIndex = (strengthLevel -1) / 3; // update axe model every 3 level
 
         if (newIndex >= axeList.Count)
         {

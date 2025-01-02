@@ -30,11 +30,11 @@ public class PlayerStats : MonoBehaviour
         // initial attributes
         upgrades = new List<UpgradeData>
         {
-            new UpgradeData("walkSpeed", 1, 10, 1.2f,10),
-            new UpgradeData("chopStrength", 1, 15, 1.3f,11),
-            new UpgradeData("chopAreaSize",1,10,3f,6),
-            new UpgradeData("truckPos",1,10,3f,3),
-            new UpgradeData("backpackSize",1,10,2f, 10)
+            new UpgradeData("walkSpeed", 1, 15, 1.4f,10, "Player walks 1.4x faster!"),
+            new UpgradeData("chopStrength", 1, 17, 1.3f,19, "Chop trees down faster!"),
+            new UpgradeData("chopAreaSize",1,20,2.5f,6, "Chop more trees at once "),
+            new UpgradeData("truckPos",1,50,2f,4, "Move the truck forward but first make sure to clear the way to reach it!"),
+            new UpgradeData("backpackSize",1,12,2f, 10, "Carry 2x more log in your backpack!")
         };
     }
 

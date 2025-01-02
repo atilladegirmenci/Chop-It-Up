@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,10 @@ public class UpgradePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI chopAreaSizeUpgradelvl;
     [SerializeField] private TextMeshProUGUI truckPosUpgradelvl;
     [SerializeField] private TextMeshProUGUI backpackSizeUpgradelvl;
+   
+    static public UpgradePanel instance;
+    
+    [SerializeField] private TextMeshProUGUI upgradeDescText;
 
     private void OnEnable()
     {
@@ -34,7 +39,36 @@ public class UpgradePanel : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+    public void ChangeDescription(string upgradeName)
+    {
+        if(upgradeName == "")
+        {
+            upgradeDescText.text = "";
+        }
+        else
+        {
+            var upgrade = PlayerStats.instance.GetUpgrade(upgradeName);
+            if (upgrade == null)
+            {
+                Debug.LogError($"No upgrade found with name: {upgradeName}");
+                return;
+            }
 
+
+            upgradeDescText.text = $"{upgrade.upgradeDescription}\nNext level: {upgrade.level + 1}\nMax level: {upgrade.maxlevel}";
+        }
+      
+    }
+     
     public void SpeedUpgrade()
     {
         UpgradeSystem.instance.UpgradeSpeed();
@@ -46,7 +80,7 @@ public class UpgradePanel : MonoBehaviour
     {
         UpgradeSystem.instance.UpgradeChopStrenght();
         chopStrenghtUpgradeAmount.text = PlayerStats.instance.GetUpgrade("chopStrength").cost.ToString();
-        chopStrengthUpgradelvl.text = setUpgradeLevelText(PlayerStats.instance.GetUpgrade("chopSrength"));
+        chopStrengthUpgradelvl.text = setUpgradeLevelText(PlayerStats.instance.GetUpgrade("chopStrength"));
         GameManager.instance.SaveGameProgress();
     }
     public void ChopAreaSizeUpgrage()
@@ -90,5 +124,6 @@ public class UpgradePanel : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    
   
 }
